@@ -7,19 +7,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+      # - name: Cache setup
+      #   uses: actions/cache@v1
+      #   env:
+      #     cache-name: cache-bioconda-utils
+      #   with:
+      #     path: ~/miniconda
+      #   key: ${{ env.cache-name }}-${{ hashFiles('.github/setup.sh') }}
       - uses: goanpeca/setup-miniconda@v1
         with:
           auto-update-conda: true
           python-version: 3.7
-      - uses: actions/checkout@v2
       - name: setup
         shell: bash -l {0}
         run: .github/setup.sh
       - name: lint
         shell: bash -l {0}
         run: |
-          bioconda-utils lint tools config.yml --exclude missing_hash missing_test
+          bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range master HEAD
       - name: build
         shell: bash -l {0}
         run: |
-          bioconda-utils build tools config.yml
+          bioconda-utils build tools config.yml --git-range master HEAD
