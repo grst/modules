@@ -10,7 +10,6 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-      - run: git diff origin/master HEAD          
       # - name: Cache setup
       #   uses: actions/cache@v1
       #   env:
@@ -28,8 +27,8 @@ jobs:
       - name: lint
         shell: bash -l {0}
         run: |
-          git fetch -va --prune --unshallow && bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range master HEAD
+          bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range origin/master HEAD
       - name: build
         shell: bash -l {0}
         run: |
-          bioconda-utils build tools config.yml --git-range master HEAD
+          bioconda-utils build tools config.yml --git-range origin/master HEAD
