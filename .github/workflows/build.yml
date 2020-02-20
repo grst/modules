@@ -25,11 +25,13 @@ jobs:
       - name: setup
         shell: bash -l {0}
         run: .github/setup.sh
-      - name: lint
-        shell: bash -l {0}
-        run: |
-          bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range master HEAD
-      - name: build
-        shell: bash -l {0}
-        run: |
-          bioconda-utils build tools config.yml --git-range origin/master HEAD
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v1
+#       - name: lint
+#         shell: bash -l {0}
+#         run: |
+#           bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range master HEAD
+#       - name: build
+#         shell: bash -l {0}
+#         run: |
+#           bioconda-utils build tools config.yml --git-range origin/master HEAD
