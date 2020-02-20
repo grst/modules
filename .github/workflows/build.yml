@@ -8,8 +8,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - run: |
-          git fetch -va
+          git fetch -va --prune
       - run: git diff master HEAD          
       # - name: Cache setup
       #   uses: actions/cache@v1
