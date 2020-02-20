@@ -8,8 +8,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: |          
-          git fetch --no-tags --prune --depth=1 origin master
+      # - run: |          
+          
           
       # git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
 
@@ -30,7 +30,7 @@ jobs:
       - name: lint
         shell: bash -l {0}
         run: |
-          bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range FETCH_HEAD HEAD
+          git fetch origin master && bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range FETCH_HEAD HEAD
       - name: build
         shell: bash -l {0}
         run: |
