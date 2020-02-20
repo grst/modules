@@ -30,7 +30,7 @@ jobs:
       - name: lint
         shell: bash -l {0}
         run: |
-          git fetch origin master && bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range FETCH_HEAD HEAD
+          git fetch origin master:latest_master && bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range latest_master HEAD
       - name: build
         shell: bash -l {0}
         run: |
