@@ -9,9 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 200
       - run: |    
-         git fetch --no-tags --prune --depth=100 origin +refs/heads/*:refs/remotes/origin/*
+         git fetch --no-tags --prune --depth=200 origin +refs/heads/*:refs/remotes/origin/*
 
       # - name: Cache setup
       #   uses: actions/cache@v1
@@ -27,13 +27,11 @@ jobs:
       - name: setup
         shell: bash -l {0}
         run: .github/setup.sh
-#       - name: Setup tmate session
-#         uses: mxschmitt/action-tmate@v1
       - name: lint
         shell: bash -l {0}
         run: |
           bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range origin/master HEAD
-#       - name: build
-#         shell: bash -l {0}
-#         run: |
-#           bioconda-utils build tools config.yml --git-range origin/master HEAD
+      - name: build
+        shell: bash -l {0}
+        run: |
+          bioconda-utils build tools config.yml --git-range origin/master HEAD
