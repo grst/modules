@@ -11,7 +11,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: |    
-         git fetch --no-tags --prune --depth=0 origin +refs/heads/*:refs/remotes/origin/*
+         git fetch --no-tags --prune --depth=100 origin +refs/heads/*:refs/remotes/origin/*
 
       # - name: Cache setup
       #   uses: actions/cache@v1
