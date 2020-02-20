@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+          git fetch -va
       - run: git diff master HEAD          
       # - name: Cache setup
       #   uses: actions/cache@v1
