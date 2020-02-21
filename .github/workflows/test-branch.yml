@@ -28,7 +28,7 @@ jobs:
         run: |
           bioconda-utils lint tools config.yml \
             --exclude missing_hash missing_tests \
-            --loglevel debug --full-report \ 
+            --loglevel debug --full-report \
             --git-range origin/master HEAD
       - name: build
         shell: bash -l {0}
