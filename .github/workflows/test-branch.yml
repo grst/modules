@@ -1,6 +1,10 @@
-name: test-pr
+# Lint & test-build all branches except master
+name: test-branch
 
-on: [pull_request]
+on: 
+  push: 
+    branches-ignore: 
+      - master
 
 jobs:
   build:
