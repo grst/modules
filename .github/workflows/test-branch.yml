@@ -26,8 +26,12 @@ jobs:
       - name: lint
         shell: bash -l {0}
         run: |
-          bioconda-utils lint tools config.yml --exclude missing_hash missing_tests --git-range origin/master HEAD
+          bioconda-utils lint tools config.yml \
+            --exclude missing_hash missing_tests \
+            --loglevel debug --full-report \ 
+            --git-range origin/master HEAD
       - name: build
         shell: bash -l {0}
         run: |
-          bioconda-utils build tools config.yml --git-range origin/master HEAD
+          bioconda-utils build tools config.yml \
+            --git-range origin/master HEAD
